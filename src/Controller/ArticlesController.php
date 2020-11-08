@@ -22,7 +22,9 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route(path="/articles/list", name="articles.list", methods={"POST", "GET"})
+     * @Route(path="/articles/list", name="articles.list", methods={"POST"})
+     * @param Request $request
+     * @return Response
      */
     public function list(Request $request): Response
     {
@@ -37,6 +39,8 @@ class ArticlesController extends AbstractController
             return new Response('end');
         }
 
-        return $this->json($articles);
+        return $this->json($articles, 200, [], [
+            'groups' => ['default']
+        ]);
     }
 }
